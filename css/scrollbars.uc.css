@@ -1,0 +1,45 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+scrollbar {
+  -moz-appearance: none;
+  position: relative;
+  background-color: transparent;
+  z-index: 2147483647; /* uint32 max */
+}
+
+scrollbar[orient="vertical"] {
+  -moz-appearance: none;
+  margin-inline-start: -8px;
+  min-width: 8px;
+}
+
+scrollbar[orient="horizontal"] {
+  -moz-appearance: none;
+  margin-top: -8px;
+  min-height: 8px;
+}
+
+scrollbar thumb {
+  background-color: rgba(0,0,0,0.2);
+}
+
+scrollbar thumb[orient="vertical"] {
+  -moz-appearance: none;
+  min-height: 20px;
+}
+
+scrollbar thumb[orient="horizontal"] {
+  -moz-appearance: none;
+  min-width: 20px;
+}
+
+scrollbar thumb[orient="vertical"]:active,
+scrollbar thumb[orient="vertical"]:hover {
+  background-color: rgba(255,140,0,0.8);
+}
+
+scrollbar thumb[orient="horizontal"]:active,
+scrollbar thumb[orient="horizontal"]:hover {
+  background-color: rgba(0,140,255,0.8);
+}
