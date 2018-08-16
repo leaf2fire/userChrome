@@ -1,6 +1,11 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 @namespace html url("http://www.w3.org/1999/xhtml");
 
-toolbarbutton#alltabs-button {
+/**
+ * Due way style sheets are loaded, some styles in this sheet may not apply. To
+ * ensure that our styles work as intended, we load additional CSS via XBL and
+ * JavaScript.
+ */
+keyset#mainKeyset {
   -moz-binding: url("userChrome.xml#user-chrome-js");
 }

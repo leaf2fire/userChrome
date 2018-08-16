@@ -20,26 +20,26 @@ scrollbar[orient="horizontal"] {
   min-height: 8px;
 }
 
-scrollbar thumb {
-  background-color: rgba(0,0,0,0.2);
+thumb {
+  background-color: transparent;
 }
 
-scrollbar thumb[orient="vertical"] {
+thumb[orient="vertical"] {
   -moz-appearance: none;
   min-height: 20px;
+  border-right: 4px solid rgba(0,0,0,0.4);
 }
 
-scrollbar thumb[orient="horizontal"] {
+thumb[orient="horizontal"] {
   -moz-appearance: none;
   min-width: 20px;
+  border-bottom: 4px solid rgba(0,0,0,0.4);
 }
 
-scrollbar thumb[orient="vertical"]:active,
-scrollbar thumb[orient="vertical"]:hover {
-  background-color: rgba(255,140,0,0.8);
+thumb[orient="vertical"]:active, thumb[orient="vertical"]:hover {
+  border-right-color: rgba(255,140,0,0.8);
 }
 
-scrollbar thumb[orient="horizontal"]:active,
-scrollbar thumb[orient="horizontal"]:hover {
-  background-color: rgba(0,140,255,0.8);
+thumb[orient="horizontal"]:active, thumb[orient="horizontal"]:hover {
+  border-bottom-color: rgba(0,140,255,0.8);
 }

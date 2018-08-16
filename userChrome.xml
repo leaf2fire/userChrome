@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 
-<bindings id="generalBindings"
+<bindings id="UserChromeBindings"
   xmlns="http://www.mozilla.org/xbl"
   xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:xbl="http://www.mozilla.org/xbl">
 
-  <binding id="user-chrome-js"
-    extends="chrome://global/content/bindings/toolbarbutton.xml#menu">
-
+  <binding id="user-chrome-js">
     <implementation>
       <constructor>
         <![CDATA[
