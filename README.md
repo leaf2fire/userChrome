@@ -60,8 +60,6 @@ debugging code and exploring existing functionality. That tool is the [Browser
 Toolbox][toolbox]. I recommend enabling it if you plan to change or add new
 functionality to your customizations.
 
-### `userChrome.css`
-
 Everything starts with the assumption that Firefox will load `userChrome.css`,
 which it currently does at the time of writing. While it may have the ".css"
 extension, `userChrome.css` is not your ordinary CSS file. It is a CSS file that
