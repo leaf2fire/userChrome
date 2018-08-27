@@ -1,5 +1,4 @@
-@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
-@namespace html url("http://www.w3.org/1999/xhtml");
+@import "xblNamespaces";
 
 /**
  * Due way style sheets are loaded, some styles in this sheet may not apply. To
@@ -7,5 +6,10 @@
  * JavaScript.
  */
 keyset#mainKeyset {
-  -moz-binding: url("userChrome.xml#user-chrome-js");
+  -moz-binding: url("src/userChrome.xml#user-chrome-js");
 }
+
+/**
+ * ADD IMPORTS AND OTHER CSS BELOW HERE
+ */
+@import "navToolbar"

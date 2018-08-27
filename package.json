@@ -1,0 +1,31 @@
+{
+  "name": "evnl-userchrome",
+  "version": "1.0.0",
+  "description": "Firefox userChrome customizations",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leaf2fire/userChrome.git"
+  },
+  "keywords": [
+    "firefox",
+    "ui",
+    "custom",
+    "css",
+    "javascript",
+    "userchrome"
+  ],
+  "author": "Evan Lee",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/leaf2fire/userChrome/issues"
+  },
+  "homepage": "https://github.com/leaf2fire/userChrome#readme",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}

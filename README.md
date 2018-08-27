@@ -3,8 +3,9 @@
 [Firefox][ff] browser customizations using [`userChrome.css`][uccss] and related
 resources repository.
 
-Personally, I don't mind the default Firefox themes, but there are some things
-that irked me. For me, it is the scrollbar.
+Personally, I don't mind the default Firefox themes, but once I realized that
+the Firefox experience can be even better, it made sense to me to make it
+better.
 
 ### Scrollbar
 
@@ -18,12 +19,12 @@ times whenever I'm trying to focus on the content on the page and my focus
 unintentionally drifts to the scrollbar. This has happened enough times that I'm
 willing to change it for a smoother browsing experience.
 
-As an additional role, the scrollbar needs to be noticeable when you need to
+As an additional role, the scrollbar needs to be noticeable when you want to
 know the information provided by the roles above and be practically invisible
 when you don't.
 
 To fulfill this final role, I decided to make the scrollbar a thin translucent
-rectangle. Details can be found in `css/scrollbars.uc.css`.
+rectangle. Details can be found in `src/scss/scrollbars.scss`.
 
 # Usage
 
@@ -38,6 +39,13 @@ Once you've found the directory, clone this repository as `chrome` in it.
 git clone https://github.com/leaf2fire/userChrome.git chrome
 ```
 
+And install and build...
+
+```
+npm install
+grunt
+```
+
 Restart Firefox for the code to take effect.
 
 ### Updating JavaScript
@@ -50,8 +58,11 @@ JavaScript files.
 
 ### Additional CSS
 
-You can add your own CSS style sheets under the `css` directory. The code will
-automatically load all files under `css` with the `.uc.css` extension.
+You can add your own CSS style sheets under the `src/scss` directory. For the
+style sheets to take effect, you must import them in either `userChrome.scss` or
+`userAgentStyle.scss` and run `grunt` to preprocess the SCSS into CSS. You can
+run `grunt watch` to avoid having to run `grunt` each time you update a SCSS
+file.
 
 # Code Walkthrough
 
@@ -117,29 +128,45 @@ Services.scriptloader.loadSubScript(uri, window);
 
 Since we only need to run our code once, it made sense to put it in the
 constructor. The JS above uses the [OS.File][osfile] API and the [subscript
-loader][jsloader] service to run our dedicated JS file. This leads us to
-`userChrome.js`.
+loader][jsloader] service to run our dedicated JS file.
 
-In short, `userChrome.js`
+This leads us to `userChrome.js`. This script solves the initial problem of the
+inadequate priority of `userChrome.css` by loading another CSS file at the user
+agent level. It does this by using services like the [style sheet service][sss]
+and helpful functions like [`makeURI`][makeuri].
 
-1. Identifies our `css` directory.
-2. Lists the full file paths inside said directory.
-3. Filters the list based on extension (i.e. '.uc.css').
-4. Loads the CSS files as User Agent.
-
-Documentation of relevent services and functions not mentioned already include
-the [style sheet service][sss] and [`makeURI`][makeuri].
-
-Finally, we made it to `css/scrollbars.uc.css`. A common property value you may
-notice is [`-moz-appearance: none`][mozapp]. This ensures that we aren't using
-[GTK][gtk] defined defaults. To give the space previously occupied solely by the
-scrollbar to the content in a page, we add [`margin-inline-start`][margin] and
-`margin-top` equal to the width and height of the scrollbar respectively.
+Finally, we made it to `src/scss/scrollbars.scss`. A common property value you
+may notice is [`-moz-appearance: none`][mozapp]. This ensures that we aren't
+using [GTK][gtk] defined defaults. To give the space previously occupied solely
+by the scrollbar to the content in a page, we add
+[`margin-inline-start`][margin] and `margin-top` equal to the width and height
+of the scrollbar respectively.
 
 # Related
 
 * Custom Firefox community ([/r/FirefoxCSS][ffcss])
 * Firefox source code ([GitHub][ffgit], [Mercurial][ffhg])
+* More resources ([userChrome.org][ucorg])
+
+# Changelog
+
+**18/08/27**
+
+* Restructured file layout to more cleanly accommodate SASS.
+* Removed ability to automatically load all CSS files inside a directory.
+  * *Reason*: Directory FileIO is too slow leading to a noticeable delay in
+    application of declared styles. Removing directory iteration fixes the
+    performance/visual bug caused by the delay.
+  * *Resolution*: You'll need to individually declare style sheets for import in
+    SCSS. This likely only needs to be done once. Keeping separate style sheets
+    is still just as easy as before.
+* Replaced CSS with SASS/SCSS.
+  * *Reason*: SCSS is more functional than CSS even in relatively small style
+    sheets. The pre-processing overhead is negligible for the user.
+
+**Initial Release**
+
+* [Commit][commit1]
 
 [ff]: https://www.mozilla.org/firefox/
 [uccss]: http://kb.mozillazine.org/index.php?title=UserChrome.css
@@ -160,3 +187,5 @@ scrollbar to the content in a page, we add [`margin-inline-start`][margin] and
 [mozapp]: https://developer.mozilla.org/en-US/docs/Web/CSS/-moz-appearance
 [gtk]: https://wiki.archlinux.org/index.php/GTK+
 [margin]: https://developer.mozilla.org/en-US/docs/Web/CSS/margin-inline-start
+[commit1]: https://github.com/leaf2fire/userChrome/tree/8d069507bbabf1af1528b00ba0ede72a895a3c1d
+[ucorg]: https://www.userchrome.org/

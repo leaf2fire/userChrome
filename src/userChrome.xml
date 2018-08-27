@@ -11,8 +11,9 @@
         <![CDATA[
           (function(){
             const profileDir = OS.Constants.Path.profileDir;
-            const file = OS.Path.join(profileDir, 'chrome', 'userChrome.js');
-            const uri = OS.Path.toFileURI(file);
+            const jsDir = OS.Path.join(profileDir, 'chrome', 'src');
+            const jsPath = OS.Path.join(jsDir, 'userChrome.js');
+            const uri = OS.Path.toFileURI(jsPath);
             Services.scriptloader.loadSubScript(uri, window);
           })();
         ]]>
