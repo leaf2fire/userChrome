@@ -1,7 +1,7 @@
 # userChrome
 
-[Firefox][ff] browser customizations using [`userChrome.css`][uccss] and related
-resources repository.
+[Firefox][ff] browser customizations (development environment) using
+[`userChrome.css`][uccss] and related resources repository.
 
 Personally, I don't mind the default Firefox themes, but once I realized that
 the Firefox experience can be even better, it made sense to me to make it
@@ -27,6 +27,17 @@ To fulfill this final role, I decided to make the scrollbar a thin translucent
 rectangle. Details can be found in `src/scss/scrollbars.scss`.
 
 # Usage
+
+### Dependencies
+
+* [git](https://git-scm.com/) -- Version control for this repository.
+* [nodejs](https://nodejs.org/) [npm](https://www.npmjs.com/)
+  [grunt](https://gruntjs.com/) -- Simplify common commands by using a task
+  runner.
+* [sass](https://sass-lang.com/) -- CSS bad. SASS a bit better.
+
+These dependencies need to be installed for everything to work. I admit that
+it's not friendly. I'll probably make a separate repo for plug and play later.
 
 ### Basic
 
